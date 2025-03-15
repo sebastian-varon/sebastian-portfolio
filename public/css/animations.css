@@ -3,13 +3,6 @@ html {
     scroll-behavior: smooth;
 }
 
-/* Floating Particle Animation */
-@keyframes floating {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(10px); }
-    100% { transform: translateY(0px); }
-}
-
 /* Fade-in effect for all sections */
 .fade-in {
     opacity: 0;
