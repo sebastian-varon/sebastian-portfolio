@@ -1,22 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Symbols+2:wght@200&display=swap');
 
 body {
     background-color: black;
     color: white;
     font-family: 'Inter', sans-serif;
     font-weight: 300;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
 }
 
 /* Navbar */
 .navbar {
     position: fixed;
-    top: 20px; /* Moved slightly higher */
+    top: 20px;
     width: 100%;
     background: transparent;
     display: flex;
@@ -47,21 +50,150 @@ body {
 
 /* Hero Section */
 .hero {
-    text-align: center;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Ensures it’s fully centered */
+    text-align: center;
 }
 
 .hero h1 {
-    font-size: 2.5rem;
+    font-size: 3rem;
     font-weight: 600;
-    margin-bottom: 10px;
 }
 
 .hero p {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     opacity: 0.7;
+}
+
+.projects {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centers vertically */
+    align-items: center; /* Centers horizontally */
+    height: 100vh; /* Full viewport height */
+    text-align: center;
+}
+
+/* Projects Grid */
+.project-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    width: 100vw;
+    height: 60vh;
+    overflow-x: auto;
+    padding: 50px 5%;
+}
+
+@media (max-width: 900px) {
+    .project-container {
+        flex-wrap: wrap; /* Allow wrapping on small screens */
+        justify-content: center;
+    }
+}
+
+/* Flip Card */
+.project-card {
+    width: 350px;
+    height: 220px;
+    perspective: 1200px;
+    position: relative;
+}
+
+.card-content {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease-in-out;
+}
+
+.project-card:hover .card-content {
+    transform: rotateY(180deg);
+}
+
+/* Front & Back */
+.front, .back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-weight: 300;
+}
+
+/* Front Face */
+.front {
+    background: black;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Back Face */
+.back {
+    background: black;
+    transform: rotateY(180deg);
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* GitHub Link */
+.back a {
+    color: #00AFFF;
+    text-decoration: none;
+    font-size: 1rem;
+    margin-top: 10px;
+    transition: color 0.3s ease;
+}
+
+.back a:hover {
+    color: #FF4444;
+}
+
+/* Floating Alchemical Symbols */
+#symbol-container {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.floating-symbol {
+    position: absolute;
+    font-family: 'Noto Sans Symbols 2', sans-serif;
+    color: rgba(255, 255, 255, 0.35); /* Slightly more transparent */
+    font-size: 69px; /* Increased size */
+    font-weight: 100;
+    pointer-events: none;
+    user-select: none;
+    opacity: 0;
+    animation: fadeSymbol 6s ease-in-out infinite;
+}
+
+/* Variation in Blur for Depth */
+.floating-symbol:nth-child(odd) {
+    filter: blur(1.5px);
+}
+
+.floating-symbol:nth-child(even) {
+    filter: blur(0.7px);
+}
+
+@keyframes fadeSymbol {
+    0% { opacity: 0; transform: scale(0.7); }
+    30% { opacity: 0.6; transform: scale(1.2); } 
+    60% { opacity: 0.4; transform: scale(0.9); }
+    100% { opacity: 0; transform: scale(0.7); }
 }

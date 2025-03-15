@@ -12,15 +12,27 @@ const PORT = process.env.PORT || 5050;
 app.use(cors());
 app.use(helmet());
 app.use(bodyParser.json());
+
+// Serve Static Files Correctly
 app.use(express.static(path.join(__dirname, "public")));
-app.use("/node_modules", express.static(path.join(__dirname, "node_modules")));
+app.use("/css", express.static(path.join(__dirname, "public/css")));
+app.use("/js", express.static(path.join(__dirname, "public/js")));
+app.use("/images", express.static(path.join(__dirname, "public/images")));
 
 // Routes
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-// Contact form route (To be implemented later)
+app.get("/projects", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "projects.html"));
+});
+
+app.get("/contact", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "contact.html"));
+});
+
+// Contact form route (to be implemented later)
 app.post("/contact", (req, res) => {
   res.send("Contact form submission received.");
 });
