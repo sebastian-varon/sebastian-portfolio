@@ -1,57 +1,62 @@
 document.addEventListener("DOMContentLoaded", () => {
   function matrixRain() {
-    const canvas = document.createElement("canvas");
-    document.body.appendChild(canvas);
+      const canvas = document.createElement("canvas");
+      document.body.appendChild(canvas);
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    canvas.style.position = "fixed";
-    canvas.style.top = "0";
-    canvas.style.left = "0";
-    canvas.style.zIndex = "-1";
+      // Set canvas properties
+      const context = canvas.getContext("2d");
+      canvas.style.position = "fixed";
+      canvas.style.top = 0;
+      canvas.style.left = 0;
+      canvas.style.width = "100vw";
+      canvas.style.height = "100vh";
+      canvas.style.zIndex = -1; // Ensure it's behind everything
 
-    const ctx = canvas.getContext("2d");
-    const fontSize = 16;
-    const columns = Math.floor(canvas.width / fontSize);
-    const drops = Array(columns).fill(1);
+      const fontSize = 16;
+      let width, height, columns, drops;
 
-    // List of Alchemy Unicode Symbols
-    const alchemySymbols = [
-      "🜁", "🜂", "🜃", "🜄", "🜅", "🜆", "🜇", "🜈", "🜉", "🜊", "🜋", "🜌",
-      "🜍", "🜎", "🜏", "🜐", "🜑", "🜒", "🜓", "🜔", "🜕", "🜖", "🜗", "🜘",
-      "🜙", "🜚", "🜛", "🜜", "🜝", "🜞", "🜟", "🜠", "🜡", "🜢", "🜣", "🜤",
-      "🜥", "🜦", "🜧", "🜨", "🜩", "🜪", "🜫", "🜬", "🜭", "🜮", "🜯", "🜰"
-    ];
+      // Unicode Alchemical Symbols (U+1F700 - U+1F77F)
+      const alchemicalSymbols = [
+          "🜀", "🜁", "🜂", "🜃", "🜄", "🜅", "🜆", "🜇", "🜈", "🜉", "🜊", "🜋", "🜌", "🜍", "🜎", "🜏",
+          "🜐", "🜑", "🜒", "🜓", "🜔", "🜕", "🜖", "🜗", "🜘", "🜙", "🜚", "🜛", "🜜", "🜝", "🜞", "🜟",
+          "🜠", "🜡", "🜢", "🜣", "🜤", "🜥", "🜦", "🜧", "🜨", "🜩", "🜪", "🜫", "🜬", "🜭", "🜮", "🜯",
+          "🜰", "🜱", "🜲", "🜳", "🜴", "🜵", "🜶", "🜷", "🜸", "🜹", "🜺", "🜻", "🜼", "🜽", "🜾", "🜿"
+      ];
 
-    function drawMatrixRain() {
-      ctx.fillStyle = "rgba(0, 0, 0, 0.07)"; // Subtle fade effect
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      function resizeCanvas() {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+          width = canvas.width;
+          height = canvas.height;
+          columns = Math.floor(width / fontSize);
+          drops = Array(columns).fill(1);
+      }
 
-      ctx.fillStyle = "rgba(204, 204, 204, 0.8)"; // Soft white color
-      ctx.font = fontSize + "px Segoe UI Symbol";
+      function drawMatrixRain() {
+          context.fillStyle = "rgba(0, 0, 0, 0.1)";
+          context.fillRect(0, 0, width, height);
+      
+          context.fillStyle = "#00FF00";
+          context.font = fontSize + "px Courier";
+      
+          for (let i = 0; i < drops.length; i++) {
+              const symbol = alchemicalSymbols[Math.floor(Math.random() * alchemicalSymbols.length)];
+              const x = i * fontSize;
+              const y = drops[i] * fontSize;
+      
+              context.fillText(symbol, x, y);
+      
+              if (y > height && Math.random() > 0.975) {
+                  drops[i] = 0;
+              }
+      
+              drops[i]++;
+          }
+      }
 
-      drops.forEach((drop, i) => {
-        const symbol = alchemySymbols[Math.floor(Math.random() * alchemySymbols.length)];
-        const x = i * fontSize;
-        const y = drop * fontSize;
-
-        ctx.fillText(symbol, x, y);
-
-        if (y > canvas.height && Math.random() > 0.975) {
-          drops[i] = 0;
-        }
-        drops[i]++;
-      });
-    }
-
-    setInterval(drawMatrixRain, 50);
-
-    window.addEventListener("resize", () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      drops.length = Math.floor(canvas.width / fontSize);
-      drops.fill(1);
-    });
+      window.addEventListener("resize", resizeCanvas);
+      resizeCanvas();
+      setInterval(drawMatrixRain, 50);
   }
 
   matrixRain();

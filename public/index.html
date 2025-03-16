@@ -1,31 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sebastian Varon - Portfolio</title>
-    <link rel="stylesheet" href="css/styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sebastian Varon - Home</title>
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
+  <canvas id="scene"></canvas>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="resume.html">Resume</a></li>
+    </ul>
+  </nav>
 
-    <!-- Navigation Menu -->
-    <nav class="navbar">
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="experience.html">Experience</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
+  <!-- Single hero-bio for the homepage content -->
+  <section class="hero-bio">
+    <h1>Sebastian Varon</h1>
+    <p class="tagline">Hexing the Ordinary</p>
+    <p>
+      I architect code like an alchemist —refining logic, bending paradigms, and sculpting algorithms 
+      into something greater than the sum of their parts. As a Software Engineer, I specialize in full-stack development, 
+      applied AI, and  cybersecurity. I operate at the intersection of efficiency and controlled entropy.
+    </p>
+    <p>
+      In a world drowning in conventionality, I embrace the art of controlled chaos—building, optimizing,
+      and securing systems that redefine what’s possible
+    </p>
+  </section>
 
-    <!-- Hero Section -->
-    <div class="hero">
-        <h1>Sebastian Varon</h1>
-        <p class="tagline">Hexing the Ordinary</p>
-    </div>
-
-    <!-- Matrix Rain Background -->
-    <script src="js/matrixRain.js"></script>
+  <script src="js/matrixRain.js"></script>
 
 </body>
 </html>
