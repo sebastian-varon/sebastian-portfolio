@@ -15,7 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const fontSize = 16;
       let width, height, columns, drops;
 
-      // Unicode Alchemical Symbols (U+1F700 - U+1F77F)
       const alchemicalSymbols = [
           "🜀", "🜁", "🜂", "🜃", "🜄", "🜅", "🜆", "🜇", "🜈", "🜉", "🜊", "🜋", "🜌", "🜍", "🜎", "🜏",
           "🜐", "🜑", "🜒", "🜓", "🜔", "🜕", "🜖", "🜗", "🜘", "🜙", "🜚", "🜛", "🜜", "🜝", "🜞", "🜟",
@@ -36,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
           context.fillStyle = "rgba(0, 0, 0, 0.1)";
           context.fillRect(0, 0, width, height);
       
-          context.fillStyle = "#00FF00";
+          context.fillStyle = "#d3d3d3";
           context.font = fontSize + "px Courier";
       
           for (let i = 0; i < drops.length; i++) {
