@@ -80,6 +80,7 @@ ul, li {
     margin: 120px auto 40px auto;
     text-align: center;
     z-index: 2;
+    border-radius: 10px;
     
     /* Glassmorphism Effect */
     background: rgba(0, 0, 0, 0.4);
