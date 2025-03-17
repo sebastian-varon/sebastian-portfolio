@@ -1,5 +1,4 @@
-// Reveal Sections on Scroll
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
     const elements = document.querySelectorAll(".fade-in");
 
     const observer = new IntersectionObserver(entries => {

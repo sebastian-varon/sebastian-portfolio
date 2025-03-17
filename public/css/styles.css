@@ -1,11 +1,13 @@
+/* Import Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Symbols+2:wght@200&display=swap');
-/*Import Myriad pro light font*/
+
 @font-face {
     font-family: 'MyriadProLight';
     src: url('../fonts/MyriadPro-Light.otf') format('opentype');
 }
 
+/* ====== Global Styles ====== */
 body {
     display: flex;
     flex-direction: column;
@@ -19,23 +21,20 @@ body {
     text-align: center;
 }
 
+/* Standard Typography */
 h1, h2, h3, h4, h5, h6, p, ul, li {
     color: white;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 ul, li {
     text-align: center;
-    list-style-type: "";
+    list-style: none;
     padding: 0;
     margin: 0;
 }
 
-/*
-=============================================
-================== NavBar ===================
-=============================================
-*/
+/* ====== Navbar ====== */
 .navbar {
     position: fixed;
     top: 0;
@@ -45,7 +44,6 @@ ul, li {
     height: 60px;
     background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(10px);
-    padding: 10px 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -54,11 +52,10 @@ ul, li {
 
 .nav-links {
     display: flex;
-    list-style: none;
     gap: 30px;
     margin: 0;
-    padding: 0
-  }
+    padding: 0;
+}
 
 .nav-links a {
     color: rgba(255, 255, 255, 0.8);
@@ -74,104 +71,56 @@ ul, li {
     opacity: 1;
 }
 
-
-/*
-=============================================
-================== HomePage =================
-=============================================
-*/
-
+/* ====== Hero Section (Home Page) ====== */
 .hero-bio {
     position: relative;
     width: 65%;
     max-width: 900px;
     padding: 40px;
-    margin: 120px auto 40px auto; 
+    margin: 120px auto 40px auto;
     text-align: center;
     z-index: 2;
-
+    
     /* Glassmorphism Effect */
-    background: rgba(0, 0, 0, 0.4); /* Subtly visible */
+    background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(10px);
-    box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.5);
-    border-radius: 0px;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
 }
 
 .hero-bio .tagline {
     font-size: 1.3rem;
     opacity: 0.8;
     margin-bottom: 20px;
-  }
-
-/* Hero Title */
-.hero h1 {
-    font-size: 3rem;
-    font-weight: 600;
-    margin-bottom: 10px;
 }
 
-.hero-bio p,
-.hero-bio li {
-  font-size: 1rem;
-  font-weight: 300;
-  line-height: 1.6;
-  margin-bottom: 15px;
-  color: rgba(255,255,255,0.85);
-}
-
-.hero p {
-    font-size: 1.3rem;
-    opacity: 0.8;
-    margin-bottom: 20px;
-}
-
-/* Bio Text */
-.bio {
-    margin-top: 20px;
-}
-
-.bio p {
-    font-size: 1.2rem;
+.hero-bio p {
+    font-size: 1rem;
     font-weight: 300;
-    letter-spacing: 0.5px;
     line-height: 1.6;
     color: rgba(255, 255, 255, 0.85);
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
 }
 
 /* Extra Blur on Edges */
 .hero-bio::before {
     content: "";
     position: absolute;
-    top: -10px; left: -10px; right: -10px; bottom: -10px;
+    inset: -10px;
     background: inherit;
     z-index: -1;
     filter: blur(20px);
-    border-radius: 15px;
     opacity: 0.2;
 }
 
-.hero-bio h1, .hero-bio h2 {
-    margin-bottom: 15px;
-  }
-
-
-/*
-=============================================
-================= Projects ==================
-=============================================
-*/
-
-/* Adjust project section to appear below the navbar */
+/* ====== Projects Section ====== */
 .main-content {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
-    margin-top: 80px; /* Push content below navbar */
+    margin-top: 80px;
+    margin-bottom: 80px;
 }
 
-/* Projects Section */
 .project-showcase {
     width: 65%;
     max-width: 900px;
@@ -182,35 +131,18 @@ ul, li {
     z-index: 2;
 }
 
-.project-showcase h1 {
-    /* Glassmorphism Effect */
-    background: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(10px);
-    box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.5);
-    border-radius: 0px;
-    padding: 40px;
-}
-
-.projects-container {
-    display: grid;
-    gap: 40px;
-    justify-content: center;
-}
-
-/* Project Cards */
+/* Individual Project Cards */
 .project {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    /* Glassmorphism Effect */
     background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(10px);
-    box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.5);
-    border-radius: 0px;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
     padding: 40px;
 }
 
 .project:hover {
     transform: translateY(-5px);
-    box-shadow: 0px 0px 30px rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
 }
 
 .project h2 {
@@ -224,17 +156,15 @@ ul, li {
     font-weight: 300;
     line-height: 1.6;
     color: rgba(255, 255, 255, 0.85);
-    margin-bottom: 15px;
 }
 
-/* GitHub & Drive Icon Buttons */
+/* ====== GitHub & Google Drive Icons ====== */
 .github-link, .drive-link {
     display: inline-block;
     margin-top: 10px;
     transition: transform 0.2s ease-in-out;
 }
 
-/* GitHub & Google Drive Icons */
 .github-icon, .drive-icon {
     width: 32px;
     height: 32px;
@@ -242,13 +172,12 @@ ul, li {
 }
 
 .github-icon {
-    filter: brightness(0) invert(1); /* Make GitHub white */
+    filter: brightness(0) invert(1); /* Make GitHub logo white */
 }
 
 .drive-icon {
-    filter: drop-shadow(2px 2px 5px rgba(255, 255, 255, 0.4)); /* Subtle glow effect */
-    filter: invert(1) brightness(2); /* Inverts colors & boosts brightness */
-    transition: transform 0.2s ease-in-out, filter 0.2s ease-in-out;
+    filter: drop-shadow(2px 2px 5px rgba(255, 255, 255, 0.4));
+    filter: invert(1) brightness(2);
 }
 
 .github-link:hover .github-icon,
@@ -256,23 +185,7 @@ ul, li {
     transform: scale(1.1);
 }
 
-/* Responsive Adjustments */
-@media (max-width: 900px) {
-    .project-showcase {
-        width: 80%;
-        padding: 30px;
-    }
-
-    .projects-container {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-}
-/*
-=============================================
-================== Carousel =================
-=============================================
-
+/* ====== Skills Carousel ====== */
 .skills-carousel {
     text-align: center;
     padding: 50px 0;
@@ -280,36 +193,31 @@ ul, li {
     position: relative;
     background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(10px);
-    box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.5);
-    border-radius: 10px;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
     width: 90%;
     margin: auto;
 }
 
-/* Carousel Track - Infinite Scroll */
+/* Scrolling Animation */
 .carousel {
     display: flex;
     overflow: hidden;
     white-space: nowrap;
     width: 100%;
     position: relative;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    /* Glassmorphism Effect */
     background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(10px);
-    box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.5);
-    border-radius: 0px;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
     padding: 40px;
 }
 
-/* Duplicated track for infinite effect */
 .carousel-track {
     display: flex;
     gap: 40px;
     animation: scrollCarousel 20s linear infinite;
 }
 
-/* Each Skill Item */
+/* Skill Icons */
 .skill {
     display: flex;
     flex-direction: column;
@@ -318,19 +226,14 @@ ul, li {
     min-width: 120px;
 }
 
-/* Skill Images */
 .skill img {
     width: 50px;
     height: 50px;
     object-fit: contain;
     transition: transform 0.3s ease-in-out;
-    -webkit-filter: drop-shadow(12px 12px 25px rgba(0,0,0,0.5));
-    filter: url(#drop-shadow);
-    -ms-filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=12, OffY=12, Color='#444')";
-    filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=12, OffY=12, Color='#444')";
+    filter: drop-shadow(2px 2px 10px rgba(255, 255, 255, 0.3));
 }
 
-/* Hover Effect */
 .skill img:hover {
     transform: scale(1.1);
 }
@@ -348,4 +251,30 @@ ul, li {
 @keyframes scrollCarousel {
     from { transform: translateX(0); }
     to { transform: translateX(-50%); }
+}
+
+/* Contact Section - Icon Buttons */
+.contact-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.contact-link {
+    display: inline-block;
+    transition: transform 0.2s ease-in-out;
+}
+
+.contact-icon {
+    width: 40px;
+    height: 40px;
+    transition: transform 0.2s ease-in-out, filter 0.2s ease-in-out;
+    filter: brightness(0) invert(1); /* Make icons white */
+}
+
+/* Hover Effect */
+.contact-link:hover .contact-icon {
+    transform: scale(1.1);
+    filter: drop-shadow(0px 0px 5px rgba(255, 255, 255, 0.7)); /* Glow effect */
 }
