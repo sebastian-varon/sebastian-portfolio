@@ -5,129 +5,137 @@ export const profile = {
   role: "Full-stack & iOS developer",
   email: "varonofc.contact@gmail.com",
   github: "https://github.com/sebastian-varon",
-  githubHandle: "sebastian-varon",
+  repo: "https://github.com/sebastian-varon/sebastian-portfolio",
 }
 
 export const hero = {
-  eyebrow: "Full-stack & iOS developer",
   headline: "Hexing the\nordinary.",
-  headlineAccent: "ordinary.",
-  body: "I refine logic into products that feel effortless: web apps, iOS apps, and the secure systems underneath them. Controlled chaos, shipped clean.",
-  hint: "Disturb the form",
-  hintTouch: "Touch to disturb",
+  body: "I’m Sebastian Varon, a full-stack and iOS developer. I build web apps, iOS apps and the secure systems underneath them.",
 }
 
+export type ProjectId = "cory" | "donezo" | "studio-connect" | "flooring" | "currency-flow"
+
 export type Project = {
-  slug: string
+  id: ProjectId
   title: string
   kind: string
-  year?: string
   summary: string
-  highlights: string[]
-  stack: string[]
+  detail: string
+  stack: string
   link?: { label: string; href: string }
 }
 
 export const projects: Project[] = [
   {
-    slug: "cory",
+    id: "cory",
     title: "CORY",
-    kind: "Capstone · Web platform",
-    year: "2024–25",
+    kind: "Capstone, 2024–25",
     summary:
-      "A staffing platform for electronic music events. Organizers recruit, verify and coordinate their crews in one place instead of across group chats and spreadsheets.",
-    highlights: [
-      "Hiring, staff rating and event coordination in one flow",
-      "Session-based authentication and identity verification",
-      "Encrypted staff data and secure messaging",
-    ],
-    stack: ["React", "Node.js", "Express", "PostgreSQL"],
+      "Electronic music events run on crews hired through group chats. CORY gives organizers one place to post shifts, verify who shows up and rate them after.",
+    detail:
+      "I built the hiring flow, session-based logins, identity checks and encrypted storage for staff records and messages.",
+    stack: "React, Node.js, Express, PostgreSQL",
     link: {
       label: "Project files",
       href: "https://drive.google.com/drive/folders/1RSdKpOKYvWTHVOEu2AucMFh2-MerwBCV?usp=sharing",
     },
   },
   {
-    slug: "donezo",
+    id: "donezo",
     title: "DONEZO",
     kind: "iOS app",
     summary:
-      "A task manager for busy people who value minimalism. Organize, get reminded, get it done, without the clutter most to-do apps pile on.",
-    highlights: ["Fast task organization and reminders", "A clean, native iOS interface"],
-    stack: ["Swift", "iOS"],
-    link: { label: "Code", href: "https://github.com/sebastian-varon/donezoapp" },
+      "A to-do app for busy people who like their lists short. Today’s tasks, reminders that fire when they should, and nothing else on the screen.",
+    detail: "Tap a task in the list to check it off.",
+    stack: "Swift, iOS",
+    link: { label: "Code on GitHub", href: "https://github.com/sebastian-varon/donezoapp" },
   },
   {
-    slug: "studio-connect",
+    id: "studio-connect",
     title: "Studio Connect",
-    kind: "Real-time web app",
+    kind: "Real-time chat",
     summary:
-      "Chat rooms for music producers to collaborate and trade knowledge live. Join a room, talk shop, and every room keeps its history.",
-    highlights: [
-      "Real-time messaging with typing indicators over Socket.io",
-      "Signup and login with bcrypt-hashed passwords",
-      "Mongoose schemas for validated, persistent room history",
-    ],
-    stack: ["Node.js", "Express", "Socket.io", "MongoDB"],
-    link: { label: "Code", href: "https://github.com/sebastian-varon/Studio-Connect" },
+      "Chat rooms for music producers. Join a room, ask how someone got their kick to sit in the mix, and the answer is still there next week because every room keeps its history.",
+    detail:
+      "Socket.io carries the messages and the typing indicator. Passwords are hashed with bcrypt and every message passes a Mongoose schema before it is stored.",
+    stack: "Node.js, Express, Socket.io, MongoDB",
+    link: { label: "Code on GitHub", href: "https://github.com/sebastian-varon/Studio-Connect" },
   },
   {
-    slug: "flooring-solution",
+    id: "flooring",
     title: "Flooring Solution",
-    kind: "Mobile app",
+    kind: "React Native app",
     summary:
-      "Floor area, material and cost estimates for homeowners, contractors and designers who need precise numbers without a spreadsheet.",
-    highlights: ["Accurate area measurement", "Material and cost estimation", "Streamlined project planning"],
-    stack: ["React Native"],
-    link: { label: "Code", href: "https://github.com/sebastian-varon/FlooringApp" },
+      "Measure a room, pick a price per square foot, add the waste allowance a contractor would, and get the boxes and the bill.",
+    detail: "The estimator here runs the same kind of math. Change the numbers.",
+    stack: "React Native",
+    link: { label: "Code on GitHub", href: "https://github.com/sebastian-varon/FlooringApp" },
   },
   {
-    slug: "currency-flow",
+    id: "currency-flow",
     title: "Currency Flow",
-    kind: "Mobile app",
+    kind: "React Native app",
     summary:
-      "Live currency conversion for travelers and online shoppers, pulling real-time rates and converting between any base and destination currency.",
-    highlights: ["Real-time exchange rates from freecurrencyapi", "Precise base-to-destination conversion"],
-    stack: ["React Native", "REST API"],
-    link: { label: "Code", href: "https://github.com/sebastian-varon/CurrencyConverterApp" },
+      "A currency converter for travellers and online shoppers. Pick a base and a destination currency and it pulls the current rate from freecurrencyapi.",
+    detail: "The converter here uses a fixed sample rate; the app fetches live ones.",
+    stack: "React Native, freecurrencyapi",
+    link: { label: "Code on GitHub", href: "https://github.com/sebastian-varon/CurrencyConverterApp" },
   },
 ]
 
-export const about = {
-  lead: "I architect code like an alchemist, refining logic into something greater than the sum of its parts.",
+export const letter = {
   paragraphs: [
-    "I build across the stack: React and Next.js on the front, Node and Express behind it, and native iOS when the idea belongs in your pocket. I came up through security, so I write code assuming someone will try to break it.",
-    "Hardened auth, validated data and least-privilege access aren't extras I bolt on later. They're how I build from the first commit.",
+    "I architect code like an alchemist: refining logic until it becomes something greater than the sum of its parts.",
+    "I build the whole thing. The React front end, the Node and Express API behind it, the database, and the login that keeps the wrong people out. When an idea belongs in someone’s pocket, I build it for iOS.",
+    "Security is where I started, and it never left. I’ve worked with Nmap, Wireshark and Metasploit, so I write code assuming someone will try to break it. Destruction is a form of creation.",
+    "I finished the Computer Programming & Analysis advanced diploma at George Brown College in April 2025, and I’m looking for a full-stack or iOS role on a team that ships.",
   ],
-  quote: "Destruction is a form of creation.",
+  signOff: "Sebastian",
 }
 
-export const stack: { group: string; items: string[] }[] = [
-  { group: "Languages", items: ["JavaScript", "Python", "C#", "Java", "SQL", "C++", "Bash"] },
-  { group: "Frameworks", items: ["React", "Next.js", "React Native", "Node.js", "Express", "ASP.NET"] },
-  { group: "Data", items: ["PostgreSQL", "MongoDB", "SQL Server"] },
-  { group: "Security", items: ["Kali Linux", "Metasploit", "Nmap", "Wireshark", "SET", "JWT", "OAuth", "RBAC"] },
-  { group: "Infrastructure", items: ["Docker", "AWS", "CI/CD", "Vercel"] },
-]
+export type StackGroup = { group: string; rows: { name: string; where?: string }[] }
 
-export const timeline = [
+export const stack: StackGroup[] = [
   {
-    when: "2025",
-    title: "Computer Programming & Analysis",
-    org: "George Brown College · Advanced Diploma",
-    detail: "Graduated April 2025.",
+    group: "Front end",
+    rows: [
+      { name: "React", where: "CORY" },
+      { name: "Next.js", where: "This site" },
+      { name: "React Native", where: "Flooring Solution, Currency Flow" },
+      { name: "Swift", where: "DONEZO" },
+    ],
   },
   {
-    when: "2024–25",
-    title: "CORY, capstone project",
-    org: "George Brown College · Capstone",
-    detail: "Staffing platform for electronic music events, built with React, Node.js, Express and PostgreSQL.",
+    group: "Back end",
+    rows: [
+      { name: "Node.js and Express", where: "CORY, Studio Connect" },
+      { name: "Socket.io", where: "Studio Connect" },
+      { name: "C# and ASP.NET Identity", where: "Travel booking app" },
+      { name: "JWT and role-based access", where: "Travel booking app" },
+    ],
   },
   {
-    when: "2022",
-    title: "Travel booking web app",
-    org: "Team project",
-    detail: "Booking for flights, hotels and rentals. I hardened the backend with JWT authentication and role-based access in C# and ASP.NET Identity.",
+    group: "Data",
+    rows: [
+      { name: "PostgreSQL", where: "CORY" },
+      { name: "MongoDB", where: "Studio Connect" },
+      { name: "SQL Server" },
+    ],
+  },
+  {
+    group: "Security",
+    rows: [{ name: "Nmap" }, { name: "Wireshark" }, { name: "Metasploit and SET" }, { name: "Kali Linux" }],
+  },
+  {
+    group: "Languages",
+    rows: [{ name: "JavaScript" }, { name: "Python" }, { name: "C# and Java" }, { name: "SQL and Bash" }],
+  },
+  {
+    group: "Schooling",
+    rows: [
+      { name: "Computer Programming & Analysis, George Brown College", where: "Apr 2025" },
+      { name: "Travel booking web app, team project", where: "2022" },
+    ],
   },
 ]
 

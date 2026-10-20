@@ -1,37 +1,33 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:is(.dark *));
-
-/* One dark theme, matched to the hero's ground so the page reads as one surface. */
+/* One dark theme matched to the hero's ground. Ground, two inks, one accent. */
 :root {
-  --background: #111110;
-  --foreground: #f1efea;
-  --muted: #1a1a18;
-  --muted-foreground: #a3a19b;
-  --card: #161615;
-  --card-foreground: #f1efea;
-  --border: rgb(241 239 234 / 0.1);
-  --ring: #8cffb8;
+  --bg: #111110;
+  --surface: #1a1a19;
+  --surface-2: #232322;
+  --ink: #ededeb;
+  --muted: #a6a6a1;
   --accent: #8cffb8;
-  --accent-foreground: #0d0d0c;
-  --radius: 1rem;
+  --accent-ink: #0c0c0b;
+  --margin: clamp(20px, 3.2vw, 48px);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
   --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-border: var(--border);
-  --color-ring: var(--ring);
   --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --radius-lg: var(--radius);
+  --color-accent-ink: var(--accent-ink);
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
   --font-serif: var(--font-instrument-serif);
+  /* five steps: small, body, lead, heading, statement */
+  --text-small: 14px;
+  --text-body: 17px;
+  --text-lead: 19px;
+  --text-heading: 32px;
+  --text-statement: clamp(24px, 2.6vw, 36px);
 }
 
 html {
@@ -40,42 +36,56 @@ html {
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--bg);
+  color: var(--ink);
   font-family: var(--font-geist-sans), "Helvetica Neue", Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.55;
   -webkit-font-smoothing: antialiased;
+  font-variant-numeric: tabular-nums;
 }
 
 ::selection {
   background: var(--accent);
-  color: var(--accent-foreground);
+  color: var(--accent-ink);
 }
 
 :focus-visible {
-  outline: 2px solid var(--ring);
+  outline: 2px solid var(--accent);
   outline-offset: 4px;
+}
+
+a {
+  text-underline-offset: 0.22em;
+  text-decoration-thickness: 1px;
+}
+
+/* Hero component, brought onto the page's type scale. */
+.sh-root .sh-body {
+  font-size: 19px;
+  opacity: 1;
+}
+.sh-root .sh-hint {
+  font-size: 14px;
+  letter-spacing: 0;
+  text-transform: none;
+  opacity: 0.7;
+}
+.sh-root .sh-link,
+.sh-root .sh-navcta {
+  font-size: 14px;
+  opacity: 1;
+}
+.sh-root .sh-btn,
+.sh-root .sh-txt {
+  font-size: 17px;
+}
+.sh-root .sh-credit {
+  font-size: 13px;
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-  }
-}
-
-/* Stack marquee: two identical tracks slide left by one track width. */
-.marquee-track {
-  animation: marquee 40s linear infinite;
-}
-.marquee:hover .marquee-track {
-  animation-play-state: paused;
-}
-@keyframes marquee {
-  to {
-    transform: translateX(-100%);
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .marquee-track {
-    animation: none;
   }
 }

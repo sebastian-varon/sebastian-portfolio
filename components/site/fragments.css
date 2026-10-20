@@ -1,0 +1,256 @@
+/* Interface fragments: each app's own conventions (small radii, 1px control borders). */
+[data-ui].ui {
+  --ui-line: #2e2e2c;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 420px;
+  padding: 20px;
+  border: 1px solid var(--ui-line);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.45;
+}
+[data-ui] .ui-dim {
+  color: var(--muted);
+}
+[data-ui] .ui-ok {
+  color: var(--accent);
+}
+[data-ui] .ui-icon {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  vertical-align: -3px;
+}
+[data-ui] .ui-head {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 500;
+}
+[data-ui] .ui-rows {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--ui-line);
+}
+[data-ui] .ui-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--ui-line);
+}
+[data-ui] .ui-applicant {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px;
+  border-radius: 8px;
+  background: var(--surface-2);
+}
+[data-ui] .ui-name {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+}
+[data-ui] .ui-btn {
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 8px;
+  background: var(--ink);
+  color: var(--bg);
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+[data-ui] .ui-btn[aria-pressed="true"] {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+[data-ui] .ui-btn:active,
+[data-ui] .ui-swap:active {
+  transform: scale(0.95);
+}
+
+/* DONEZO: a plain rounded phone screen */
+[data-ui].ui-phone {
+  max-width: 300px;
+  margin-inline: auto;
+  border-radius: 36px;
+  padding: 28px 20px 24px;
+  border-width: 6px;
+  border-color: #262625;
+}
+[data-ui] .ui-phone-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+[data-ui] .ui-today {
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+[data-ui] .ui-tasks {
+  display: flex;
+  flex-direction: column;
+}
+[data-ui] .ui-task {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 44px;
+  text-align: left;
+  cursor: pointer;
+}
+[data-ui] .ui-check {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 22px;
+  height: 22px;
+  border: 1.5px solid var(--muted);
+  border-radius: 50%;
+  transition: background 0.2s, border-color 0.2s;
+}
+[data-ui] .ui-task[aria-checked="true"] .ui-check {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+[data-ui] .ui-done {
+  color: var(--muted);
+  text-decoration: line-through;
+}
+[data-ui] .ui-reminder {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+}
+
+/* Studio Connect */
+[data-ui] .ui-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+[data-ui] .ui-who {
+  font-weight: 600;
+  color: var(--accent);
+}
+[data-ui] .ui-typing {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+}
+[data-ui] .ui-dots {
+  display: inline-flex;
+  gap: 3px;
+}
+[data-ui] .ui-dots i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--muted);
+  animation: ui-typing 1.2s infinite ease-in-out;
+}
+[data-ui] .ui-dots i:nth-child(2) {
+  animation-delay: 0.15s;
+}
+[data-ui] .ui-dots i:nth-child(3) {
+  animation-delay: 0.3s;
+}
+@keyframes ui-typing {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+  30% {
+    transform: translateY(-4px);
+    opacity: 1;
+  }
+}
+
+/* Flooring and Currency Flow */
+[data-ui] .ui-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+[data-ui] .ui-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+[data-ui] .ui-field input {
+  width: 100%;
+  min-width: 0;
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid var(--ui-line);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--ink);
+  font: inherit;
+  font-size: 17px;
+}
+[data-ui] .ui-field input:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 0;
+  border-color: transparent;
+}
+[data-ui] .ui-result {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  gap: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--ui-line);
+}
+[data-ui] .ui-result dd {
+  font-size: 17px;
+  font-weight: 500;
+}
+[data-ui] .ui-big {
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+[data-ui] .ui-result .ui-big {
+  font-size: 17px;
+  color: var(--accent);
+}
+[data-ui] .ui-pair {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 500;
+}
+[data-ui] .ui-swap {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--ui-line);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.15s, border-color 0.2s;
+}
+[data-ui] .ui-swap:hover {
+  border-color: var(--muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-ui] .ui-dots i {
+    animation: none;
+  }
+}
