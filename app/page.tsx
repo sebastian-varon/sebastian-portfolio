@@ -57,13 +57,13 @@ export default function Home() {
                 <span id="work-title">Work</span>
               </Reveal>
               <Reveal as="p" delay={0.08} className="mt-4 text-lead text-ink">
-                Five apps, from a capstone staffing platform to an iOS to-do list. Each one has a small working piece of
-                it further down.
+                Six projects, from a live site for a Toronto techno promoter to an iOS to-do list. Each one has a small
+                working piece of it further down.
               </Reveal>
             </div>
           </div>
           <Reveal delay={0.16} className="mt-10">
-            <WorkLedger projects={projects} initial="flooring" />
+            <WorkLedger projects={projects} initial="takeover" />
           </Reveal>
         </section>
 

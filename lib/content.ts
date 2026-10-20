@@ -13,7 +13,7 @@ export const hero = {
   body: "I’m Sebastian Varon, a full-stack and iOS developer. I build web apps, iOS apps and the secure systems underneath them.",
 }
 
-export type ProjectId = "cory" | "donezo" | "studio-connect" | "flooring" | "currency-flow"
+export type ProjectId = "takeover" | "cory" | "donezo" | "studio-connect" | "flooring" | "currency-flow"
 
 export type Project = {
   id: ProjectId
@@ -26,6 +26,17 @@ export type Project = {
 }
 
 export const projects: Project[] = [
+  {
+    id: "takeover",
+    title: "Takeover 6ix",
+    kind: "Shopify site, live",
+    summary:
+      "The website for Takeover 6ix, a Toronto techno promoter running nights since 2022. Ravers land on it to find the next event, get tickets and rewatch the sets from past nights.",
+    detail:
+      "I wrote the theme’s sections in Liquid on top of Shopify’s Fabric theme: a full-screen video hero, the upcoming-events grid that links out to tickets, a manifesto block with a scanline and a scrolling ticker, and an archive of past nights. Every one of them reflows down to a phone.",
+    stack: "Shopify, Liquid, CSS, JavaScript",
+    link: { label: "Visit the site", href: "https://takeover6ixevents.com" },
+  },
   {
     id: "cory",
     title: "CORY",

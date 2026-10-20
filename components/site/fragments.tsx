@@ -10,6 +10,51 @@ import "./fragments.css"
  * The `data-ui` root lets them keep their own borders and control styles.
  */
 
+function Takeover() {
+  const events = {
+    upcoming: [
+      { name: "Anfisa Letyago", date: "Oct 17" },
+      { name: "Vendex & B2", date: "Oct 24" },
+      { name: "Halloween w/ Schrotthagen", date: "Oct 30" },
+      { name: "Aerea (Live)", date: "Nov 21" },
+    ],
+    past: [
+      { name: "Drakk", date: "NYE 2026" },
+      { name: "Azyr", date: "Oct 2025" },
+      { name: "Adrian Mills", date: "Sep 2025" },
+      { name: "Asbak", date: "May 2025" },
+    ],
+  }
+  const [tab, setTab] = useState<keyof typeof events>("upcoming")
+  return (
+    <div data-ui className="ui ui-t6">
+      <div className="ui-t6-tabs" role="tablist" aria-label="Events">
+        {(["upcoming", "past"] as const).map((t) => (
+          <button key={t} type="button" role="tab" aria-selected={tab === t} onClick={() => setTab(t)}>
+            {t === "upcoming" ? "Upcoming" : "Past events"}
+          </button>
+        ))}
+      </div>
+      <ul className="ui-t6-list">
+        {events[tab].map((e) => (
+          <li key={e.name}>
+            <span>
+              <span className="ui-t6-name">{e.name}</span>
+              <span className="ui-t6-date">{e.date}</span>
+            </span>
+            <span className="ui-t6-btn">{tab === "upcoming" ? "Get tickets" : "Watch set"}</span>
+          </li>
+        ))}
+      </ul>
+      <div className="ui-t6-ticker" aria-hidden="true">
+        <span>
+          {"No spectators · Only participants · ".repeat(4)}
+        </span>
+      </div>
+    </div>
+  )
+}
+
 function Cory() {
   const shifts = [
     { role: "Bar", filled: 4, of: 4 },
@@ -211,6 +256,7 @@ function Currency() {
 }
 
 const fragments: Record<ProjectId, () => React.JSX.Element> = {
+  takeover: Takeover,
   cory: Cory,
   donezo: Donezo,
   "studio-connect": Studio,
