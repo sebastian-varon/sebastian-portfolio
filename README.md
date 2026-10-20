@@ -1,26 +1,30 @@
 # Sebastian Varon: Portfolio
 
-Personal portfolio site for Sebastian Varon, software developer (web, mobile and security). Live at **https://varon-portfolio.vercel.app**.
+Personal portfolio for Sebastian Varon, full-stack and iOS developer. Live at **https://varon-portfolio.vercel.app**.
 
-## Pages
+## Stack
 
-- **Home:** intro with an animated matrix-rain background.
-- **Projects:** DONEZO (iOS), CORY (capstone), Flooring Solution, Studio Connect and Currency Flow, with links to code.
-- **Resume:** education, technologies and project highlights.
+- Next.js 16 (App Router), React 19 and TypeScript
+- Tailwind CSS 4 with a shadcn-style `components/ui` folder
+- Motion for scroll reveals and the floating nav
+- A WebGL2 liquid-particle hero (Sculpture Hero from 21st.dev, by guglielmogiannattasio.it), fed by a custom sculpture rendered with `scripts/generate-sculpture.py`
 
-## Tech stack
+## Editing content
 
-- HTML, CSS and vanilla JavaScript, with canvas animation for the background
-- Node.js and Express server (`server.js`) with Helmet security headers and CORS
-- Deployed on Vercel
+All copy lives in `lib/content.ts`. Add a project by adding an entry to `projects`.
 
 ## Run locally
 
 ```bash
-git clone https://github.com/sebastian-varon/sebastian-portfolio.git
-cd sebastian-portfolio
 npm install
-node server.js
+npm run dev
 ```
 
-Then open http://localhost:5050.
+Then open http://localhost:3000. Run `npm run lint` and `npm run build` before pushing.
+
+## Regenerating the sculpture
+
+```bash
+python3 -m pip install numpy pillow
+python3 scripts/generate-sculpture.py
+```
