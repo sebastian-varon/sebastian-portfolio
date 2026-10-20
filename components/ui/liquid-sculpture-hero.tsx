@@ -1728,12 +1728,6 @@ export default function SculptureHero(props: SculptureHeroProps) {
           </div>
         </div>
       </div>
-
-      {showCredit && (
-        <a className="sh-credit" href="https://guglielmogiannattasio.it" target="_blank" rel="noopener">
-          by guglielmogiannattasio.it
-        </a>
-      )}
     </section>
   )
 }
