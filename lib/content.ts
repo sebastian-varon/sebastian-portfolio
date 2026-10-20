@@ -3,7 +3,7 @@
 export const profile = {
   name: "Sebastian Varon",
   role: "Full-stack & iOS developer",
-  email: "varonofc.contact@gmail.com",
+  email: "sebasvaronmoreno@hotmail.com",
   github: "https://github.com/sebastian-varon",
   repo: "https://github.com/sebastian-varon/sebastian-portfolio",
 }
