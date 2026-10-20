@@ -42,3 +42,7 @@ next-env.d.ts
 
 # python
 __pycache__/
+
+# design skill working files
+.taste-skill/
+.impeccable/

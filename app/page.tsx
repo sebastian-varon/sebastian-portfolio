@@ -1,30 +1,21 @@
-import { ArrowUpRight } from "lucide-react"
 import SculptureHero from "@/components/ui/liquid-sculpture-hero"
 import { CopyEmail } from "@/components/site/copy-email"
-import { FloatingNav } from "@/components/site/floating-nav"
-import { ProjectCard } from "@/components/site/project-card"
+import { Fragment } from "@/components/site/fragments"
 import { Reveal } from "@/components/site/reveal"
-import { about, hero, nav, profile, projects, stack, timeline } from "@/lib/content"
+import { SiteHeader } from "@/components/site/site-header"
+import { WorkLedger } from "@/components/site/work-ledger"
+import { hero, letter, nav, profile, projects, stack } from "@/lib/content"
 
 const sans = "var(--font-geist-sans), 'Helvetica Neue', Arial, sans-serif"
 const serif = "var(--font-instrument-serif), 'Times New Roman', serif"
 
-function SectionLabel({ index, children }: { index: string; children: React.ReactNode }) {
-  return (
-    <p className="flex items-center gap-3 font-mono text-xs tracking-[0.14em] text-muted-foreground uppercase">
-      <span className="text-accent">{index}</span>
-      <span aria-hidden="true" className="h-px w-7 bg-current opacity-60" />
-      {children}
-    </p>
-  )
-}
+const frame = "mx-auto max-w-[1440px] px-[var(--margin)]"
+const textColumn = "col-span-12 lg:col-span-5 lg:col-start-3"
 
 export default function Home() {
-  const marquee = stack.flatMap((g) => g.items)
-
   return (
     <>
-      <FloatingNav />
+      <SiteHeader />
 
       <main id="top">
         <SculptureHero
@@ -35,7 +26,7 @@ export default function Home() {
           bodyFont={sans}
           accentFont={serif}
           darkBackground="#111110"
-          accentColor="#8CFFB8"
+          textColor="#EDEDEB"
           src="/sculpture/sculpture-wide.webp"
           darkSrc="/sculpture/sculpture-wide.webp"
           mobileSrc="/sculpture/sculpture-tall.webp"
@@ -43,173 +34,194 @@ export default function Home() {
           imageAlt="A twisting bundle of silver and green filaments that liquefies under the cursor"
           brand={profile.name}
           navLinks={nav}
-          navCta={{ label: "Let’s talk", href: `mailto:${profile.email}` }}
-          eyebrow={hero.eyebrow}
+          navCta={{ label: "Email me", href: `mailto:${profile.email}` }}
+          eyebrow=""
           headline={hero.headline}
-          headlineAccent={hero.headlineAccent}
+          headlineAccent=""
           body={hero.body}
           primaryCta={{ label: "See my work", href: "#work" }}
           secondaryCta={{ label: "Get in touch", href: "#contact" }}
-          hint={hero.hint}
-          hintTouch={hero.hintTouch}
-          backdropText="varon"
+          hint=""
+          hintTouch=""
+          backdropText=""
           intro
           ambient
           ambientIntensity={0.6}
         />
 
-        {/* Work */}
-        <section id="work" className="mx-auto max-w-7xl scroll-mt-24 px-5 py-24 sm:px-8 sm:py-32 lg:px-12">
-          <Reveal className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <SectionLabel index="01">Selected work</SectionLabel>
-              <h2 className="mt-5 max-w-3xl text-4xl font-medium tracking-[-0.045em] sm:text-6xl">
-                Things I’ve <span className="font-serif font-normal text-accent italic">conjured</span> into existence.
-              </h2>
+        {/* Work: a ledger of every project, then each one with a working piece of it. */}
+        <section id="work" aria-labelledby="work-title" className={`${frame} scroll-mt-20 pt-32 pb-12`}>
+          <div className="grid grid-cols-12 gap-x-6">
+            <div className={textColumn}>
+              <Reveal as="h2" className="text-heading leading-tight font-medium tracking-[-0.03em]">
+                <span id="work-title">Work</span>
+              </Reveal>
+              <Reveal as="p" delay={0.08} className="mt-4 text-lead text-ink">
+                Five apps, from a capstone staffing platform to an iOS to-do list. Each one has a small working piece of
+                it further down.
+              </Reveal>
             </div>
-            <a
-              href={profile.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex shrink-0 items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+          </div>
+          <Reveal delay={0.16} className="mt-10">
+            <WorkLedger projects={projects} initial="flooring" />
+          </Reveal>
+        </section>
+
+        <div className={frame}>
+          {projects.map((p) => (
+            <article
+              key={p.id}
+              id={p.id}
+              aria-labelledby={`${p.id}-title`}
+              className="grid scroll-mt-24 grid-cols-12 items-center gap-x-6 gap-y-10 py-16 lg:py-20"
             >
-              Everything on GitHub
-              <ArrowUpRight aria-hidden="true" className="size-4" />
-            </a>
-          </Reveal>
-
-          <ul className="mt-14 grid gap-4 md:grid-cols-2 lg:gap-5">
-            {projects.map((p, i) => (
-              <Reveal as="li" key={p.slug} delay={(i % 2) * 0.08} className={i === 0 ? "md:col-span-2" : undefined}>
-                <ProjectCard project={p} index={i} />
+              <div className={textColumn}>
+                <Reveal as="h3" className="text-heading leading-tight font-medium tracking-[-0.03em]">
+                  <span id={`${p.id}-title`}>{p.title}</span>
+                </Reveal>
+                <Reveal as="p" delay={0.07} className="mt-1 text-small text-muted">
+                  {p.kind} · {p.stack}
+                </Reveal>
+                <Reveal as="p" delay={0.14} className="mt-6 text-body text-ink">
+                  {p.summary}
+                </Reveal>
+                <Reveal as="p" delay={0.21} className="mt-4 text-body text-ink">
+                  {p.detail}
+                </Reveal>
+                {p.link && (
+                  <Reveal delay={0.28} className="mt-6">
+                    <a
+                      href={p.link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-body text-ink underline decoration-muted transition-colors hover:decoration-accent"
+                    >
+                      {p.link.label}
+                      <span className="sr-only"> for {p.title} (opens in a new tab)</span>
+                    </a>
+                  </Reveal>
+                )}
+              </div>
+              <Reveal manner="settle" delay={0.12} className="col-span-12 lg:col-span-4 lg:col-start-9">
+                <Fragment id={p.id} />
               </Reveal>
-            ))}
-          </ul>
-        </section>
+            </article>
+          ))}
+        </div>
 
-        {/* About */}
-        <section id="about" className="scroll-mt-24 border-y border-border bg-muted/40">
-          <div className="mx-auto grid max-w-7xl gap-12 px-5 py-24 sm:px-8 sm:py-32 lg:grid-cols-[1fr_1.15fr] lg:gap-20 lg:px-12">
-            <Reveal>
-              <SectionLabel index="02">About</SectionLabel>
-              <p className="mt-6 text-3xl leading-[1.12] font-medium tracking-[-0.035em] sm:text-[2.6rem]">{about.lead}</p>
+        {/* About: a short letter. */}
+        <section id="about" aria-labelledby="about-title" className="scroll-mt-20 bg-surface py-32">
+          <div className="mx-auto max-w-[520px] px-6">
+            <Reveal as="h2" className="text-heading leading-tight font-medium tracking-[-0.03em]">
+              <span id="about-title">A note from me</span>
             </Reveal>
-            <Reveal delay={0.1} className="flex flex-col gap-6 text-[17px] leading-relaxed text-muted-foreground lg:pt-12">
-              {about.paragraphs.map((p) => (
-                <p key={p}>{p}</p>
+            <div className="mt-8 flex flex-col gap-6 text-body text-ink">
+              {letter.paragraphs.map((para, i) => (
+                <Reveal as="p" key={i} delay={0.08 * (i + 1)}>
+                  {para}
+                </Reveal>
               ))}
-              <blockquote className="mt-4 border-l border-accent pl-5 font-serif text-3xl text-foreground italic sm:text-4xl">
-                “{about.quote}”
-              </blockquote>
+            </div>
+            <Reveal delay={0.45} className="mt-10">
+              <p className="font-serif text-heading leading-none italic">{letter.signOff}</p>
+              <p className="mt-2 text-small text-muted">{profile.role}</p>
             </Reveal>
           </div>
         </section>
 
-        {/* Stack */}
-        <section id="stack" className="scroll-mt-24 py-24 sm:py-32">
-          <Reveal className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
-            <SectionLabel index="03">Stack</SectionLabel>
-            <h2 className="mt-5 max-w-3xl text-4xl font-medium tracking-[-0.045em] sm:text-6xl">
-              Tools of the <span className="font-serif font-normal text-accent italic">craft</span>.
-            </h2>
-          </Reveal>
-
-          <div
-            aria-hidden="true"
-            className="marquee mt-14 flex overflow-hidden border-y border-border py-6 [mask-image:linear-gradient(90deg,transparent,black_12%,black_88%,transparent)]"
-          >
-            {[0, 1].map((k) => (
-              <ul key={k} className="marquee-track flex shrink-0 items-center gap-10 pr-10">
-                {marquee.map((s) => (
-                  <li key={s} className="flex items-center gap-10 text-2xl font-medium tracking-tight whitespace-nowrap text-foreground/80 sm:text-3xl">
-                    {s}
-                    <span className="size-1.5 rounded-full bg-accent/70" />
-                  </li>
-                ))}
-              </ul>
-            ))}
-          </div>
-
-          <div className="mx-auto mt-14 grid max-w-7xl gap-x-8 gap-y-10 px-5 sm:grid-cols-2 sm:px-8 lg:grid-cols-5 lg:px-12">
-            {stack.map((g, i) => (
-              <Reveal key={g.group} delay={i * 0.05}>
-                <h3 className="font-mono text-xs tracking-[0.14em] text-muted-foreground uppercase">{g.group}</h3>
-                <ul className="mt-4 space-y-2 text-[15px]">
-                  {g.items.map((s) => (
-                    <li key={s}>{s}</li>
-                  ))}
-                </ul>
+        {/* Stack: two-ended rows, the tool on the left and where I used it on the right. */}
+        <section id="stack" aria-labelledby="stack-title" className={`${frame} scroll-mt-20 py-32`}>
+          <div className="grid grid-cols-12 gap-x-6">
+            <div className={textColumn}>
+              <Reveal as="h2" className="text-heading leading-tight font-medium tracking-[-0.03em]">
+                <span id="stack-title">What I work with</span>
               </Reveal>
-            ))}
+              <Reveal as="p" delay={0.08} className="mt-4 text-lead text-ink">
+                The tools, and the project each one shipped in.
+              </Reveal>
+            </div>
           </div>
-        </section>
-
-        {/* Journey */}
-        <section id="journey" className="mx-auto max-w-7xl scroll-mt-24 px-5 pb-24 sm:px-8 sm:pb-32 lg:px-12">
-          <Reveal>
-            <SectionLabel index="04">Journey</SectionLabel>
-          </Reveal>
-          <ol className="mt-10 border-t border-border">
-            {timeline.map((t, i) => (
-              <Reveal
-                as="li"
-                key={t.title}
-                delay={i * 0.06}
-                className="grid gap-2 border-b border-border py-8 sm:grid-cols-[140px_1fr_1.2fr] sm:gap-8"
+          <div className="mt-12 grid grid-cols-12 gap-x-6 gap-y-10">
+            {[stack.slice(0, 3), stack.slice(3)].map((half, h) => (
+              <div
+                key={h}
+                className={`col-span-12 flex flex-col gap-10 ${h === 0 ? "lg:col-span-5 lg:col-start-3" : "lg:col-span-4 lg:col-start-9"}`}
               >
-                <span className="font-mono text-sm text-accent">{t.when}</span>
-                <div>
-                  <h3 className="text-xl font-medium tracking-tight">{t.title}</h3>
-                  <p className="mt-1 text-sm text-muted-foreground">{t.org}</p>
-                </div>
-                <p className="text-[15px] leading-relaxed text-muted-foreground">{t.detail}</p>
-              </Reveal>
+                {half.map((g) => (
+                  <div key={g.group}>
+                    <h3 className="text-small text-muted">{g.group}</h3>
+                    <ul className="mt-2">
+                      {g.rows.map((r, i) => (
+                        <Reveal
+                          as="li"
+                          key={r.name}
+                          delay={0.06 * i}
+                          className="flex min-h-11 items-baseline justify-between gap-6 py-1.5"
+                        >
+                          <span className="flex items-baseline gap-2 text-body text-ink">
+                            <span aria-hidden="true" className="size-2 shrink-0 translate-y-[-2px] rounded-full bg-muted" />
+                            {r.name}
+                          </span>
+                          {r.where && <span className="shrink-0 text-right text-small text-muted">{r.where}</span>}
+                        </Reveal>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
             ))}
-          </ol>
+          </div>
         </section>
 
         {/* Contact */}
-        <section id="contact" className="relative scroll-mt-24 overflow-hidden border-t border-border">
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute -top-40 left-1/2 h-80 w-[60rem] -translate-x-1/2 rounded-full bg-accent/10 blur-[120px]"
-          />
-          <Reveal className="relative mx-auto max-w-7xl px-5 py-28 sm:px-8 sm:py-40 lg:px-12">
-            <SectionLabel index="05">Contact</SectionLabel>
-            <h2 className="mt-6 max-w-5xl text-5xl leading-[0.95] font-medium tracking-[-0.05em] sm:text-7xl lg:text-8xl">
-              Let’s build something <span className="font-serif font-normal text-accent italic">extraordinary</span>.
-            </h2>
-            <p className="mt-8 max-w-xl text-lg text-muted-foreground">
-              I’m looking for full-stack and iOS roles. If you’re hiring, or have an idea worth building, my inbox is open.
-            </p>
-            <div className="mt-10 flex flex-wrap items-center gap-3">
-              <a
-                href={`mailto:${profile.email}`}
-                className="inline-flex h-12 items-center gap-2 rounded-full bg-foreground px-6 text-sm font-medium text-background transition-transform hover:-translate-y-px"
-              >
-                {profile.email}
-                <ArrowUpRight aria-hidden="true" className="size-4" />
-              </a>
-              <CopyEmail email={profile.email} />
-              <a
-                href={profile.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex h-12 items-center gap-2 rounded-full border border-border px-5 text-sm font-medium transition-colors hover:border-foreground/40"
-              >
-                GitHub
-                <ArrowUpRight aria-hidden="true" className="size-4" />
-              </a>
+        <section id="contact" aria-labelledby="contact-title" className="scroll-mt-20 bg-surface py-32">
+          <div className={`${frame} grid grid-cols-12 items-center gap-x-6 gap-y-10`}>
+            <Reveal as="p" className="col-span-12 text-statement leading-[1.15] font-medium tracking-[-0.02em] lg:col-span-6">
+              If you’re hiring a full-stack or iOS developer, or have something worth building, write to me.
+            </Reveal>
+            <div className="col-span-12 lg:col-span-4 lg:col-start-9">
+              <Reveal as="h2" delay={0.08} className="text-lead font-medium">
+                <span id="contact-title">Say hello</span>
+              </Reveal>
+              <Reveal delay={0.16} className="mt-5 flex flex-col items-start gap-3 text-lead">
+                <a href={`mailto:${profile.email}`} className="text-ink underline decoration-accent">
+                  {profile.email}
+                </a>
+                <a
+                  href={profile.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-ink underline decoration-muted transition-colors hover:decoration-accent"
+                >
+                  github.com/sebastian-varon
+                </a>
+              </Reveal>
+              <Reveal delay={0.24} className="mt-6">
+                <CopyEmail email={profile.email} />
+              </Reveal>
             </div>
-          </Reveal>
+          </div>
         </section>
       </main>
 
-      <footer className="border-t border-border">
-        <div className="mx-auto flex max-w-7xl flex-col gap-2 px-5 py-8 text-xs text-muted-foreground sm:flex-row sm:justify-between sm:px-8 lg:px-12">
-          <span>© {profile.name}</span>
-          <span>Built with Next.js, React and about 100,000 particles.</span>
-        </div>
+      <footer className={`${frame} grid grid-cols-1 gap-2 pt-10 pb-8 text-small text-muted sm:grid-cols-[1fr_auto_1fr] sm:items-baseline`}>
+        <span>{profile.name}, full-stack & iOS developer</span>
+        <span className="flex gap-6">
+          <a href={profile.github} target="_blank" rel="noopener noreferrer" className="text-ink no-underline hover:underline">
+            GitHub
+          </a>
+          <a href={`mailto:${profile.email}`} className="text-ink no-underline hover:underline">
+            Email
+          </a>
+        </span>
+        <a
+          href={profile.repo}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-ink no-underline hover:underline sm:justify-self-end"
+        >
+          Source for this site
+        </a>
       </footer>
     </>
   )
