@@ -33,6 +33,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${geistSans.variable} ${instrumentSerif.variable} antialiased`}
     >
       <body className="min-h-full">{children}</body>
